@@ -111,10 +111,10 @@
                     </button>
                 </div>
                 <div class="flex flex-wrap gap-2 mt-4">
-                    <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">امراض الدواجن</span>
-                    <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">اللقاحات</span>
-                    <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">الادوية البيطرية</span>
-                    <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">التغذية</span>
+                    <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">زيارة ميدانية</span>
+                    <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">أعمال مكتبية</span>
+                    <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">مبادرات الموظف/القسم</span>
+                    <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">أحمد البادي</span>
                 </div>
             </div>
         </div>
@@ -215,14 +215,14 @@ if (!visitCountElement) {
         visitCountElement.id = 'visitCount';
         visitCountElement.className = 'text-right mt-3 text-gray-700 font-semibold text-lg';
         visitCountElement.innerHTML = `
-            <span class="text-blue-700">عدد الزيارات الميدانية:</span> 
+            <span class="text-blue-700">إجمالي عدد الزيارات الميدانية:</span> 
             <span class="text-gray-900">${visitCount}</span>
         `;
         searchSection.insertAdjacentElement('afterend', visitCountElement);
     }
 } else {
     visitCountElement.innerHTML = `
-        <span class="text-blue-700">عدد الزيارات الميدانية:</span> 
+        <span class="text-blue-700">إجمالي عدد الزيارات الميدانية:</span> 
         <span class="text-gray-900">${visitCount}</span>
     `;
 }
