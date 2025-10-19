@@ -322,7 +322,7 @@ if (!visitCountElement) {
             }
             
             // Update results count and current sheet
-            resultsCount.textContent = `${results.length} عدد الزيارات`;
+            resultsCount.textContent = `عدد الزيارات ${results.length}`;
             currentSheet.textContent = sheetName;
             
             cardsContainer.classList.remove('hidden');
@@ -523,4 +523,5 @@ sheetSelect.addEventListener('change', async () => {
 </body>
 
 </html>
+
 
