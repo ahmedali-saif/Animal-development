@@ -457,7 +457,7 @@ sheetSelect.addEventListener('change', async () => {
             visitCountElement.id = 'visitCount';
             visitCountElement.className = 'text-right mt-3 text-gray-700 font-semibold text-lg';
             visitCountElement.innerHTML = `
-                <span class="text-blue-700">عدد الزيارات الميدانية:</span> 
+                <span class="text-blue-700">إجمالي عدد الزيارات الميدانية:</span> 
                 <span class="text-gray-900">${visitCount}</span>
             `;
             searchSection.insertAdjacentElement('afterend', visitCountElement);
@@ -465,7 +465,7 @@ sheetSelect.addEventListener('change', async () => {
     } else {
         visitCountElement.style.display = 'block';
         visitCountElement.innerHTML = `
-            <span class="text-blue-700">عدد الزيارات الميدانية:</span> 
+            <span class="text-blue-700">إجمالي عدد الزيارات الميدانية:</span> 
             <span class="text-gray-900">${visitCount}</span>
         `;
     }
@@ -523,5 +523,6 @@ sheetSelect.addEventListener('change', async () => {
 </body>
 
 </html>
+
 
 
