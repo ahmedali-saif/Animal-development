@@ -407,12 +407,44 @@ if (!visitCountElement) {
             }
         });
 
-        // Clear cached data when sheet selection changes
-        sheetSelect.addEventListener('change', () => {
-            // Keep the data cached but clear the results display
-            cardsContainer.classList.add('hidden');
-            noResults.classList.add('hidden');
-        });
+        // عند تغيير ورقة العمل، عرض عدد الزيارات مباشرة
+sheetSelect.addEventListener('change', async () => {
+    cardsContainer.classList.add('hidden');
+    noResults.classList.add('hidden');
+
+    const selectedSheet = sheetSelect.value;
+
+    // جلب البيانات (مع الكاش التلقائي)
+    const data = await fetchSheetData(selectedSheet);
+
+    // حساب عدد الصفوف التي تحتوي على بيانات
+    const validRows = data.filter(row =>
+        Object.values(row).some(value => value && value.trim() !== '')
+    );
+    const visitCount = validRows.length;
+
+    // إنشاء أو تحديث العنصر الذي يعرض العدد
+    let visitCountElement = document.getElementById('visitCount');
+    if (!visitCountElement) {
+        const searchSection = document.querySelector('.flex.flex-col.md\\:flex-row.gap-4.mb-2');
+        if (searchSection) {
+            visitCountElement = document.createElement('div');
+            visitCountElement.id = 'visitCount';
+            visitCountElement.className = 'text-right mt-3 text-gray-700 font-semibold text-lg';
+            visitCountElement.innerHTML = `
+                <span class="text-blue-700">عدد الزيارات الميدانية:</span> 
+                <span class="text-gray-900">${visitCount}</span>
+            `;
+            searchSection.insertAdjacentElement('afterend', visitCountElement);
+        }
+    } else {
+        visitCountElement.innerHTML = `
+            <span class="text-blue-700">عدد الزيارات الميدانية:</span> 
+            <span class="text-gray-900">${visitCount}</span>
+        `;
+    }
+});
+
 
         // Add sample data for testing if needed
         function addSampleData() {
@@ -465,5 +497,6 @@ if (!visitCountElement) {
 </body>
 
 </html>
+
 
 
