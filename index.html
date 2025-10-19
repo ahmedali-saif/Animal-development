@@ -199,21 +199,31 @@
                 // معالجة النص لتحويله إلى JSON صالح
                 const jsonData = JSON.parse(jsonText.substring(47).slice(0, -2));
                 sheetData[sheetName] = parseGoogleSheetData(jsonData);
-                // حساب عدد الصفوف التي تحتوي على بيانات حقيقية (وليست فارغة)
-const validRows = sheetData[sheetName].filter(row => 
+                // --- حساب عدد الصفوف التي تحتوي على بيانات حقيقية (عدد الزيارات الميدانية) ---
+const validRows = sheetData[sheetName].filter(row =>
     Object.values(row).some(value => value && value.trim() !== '')
 );
 const visitCount = validRows.length;
 
-// عرض عدد الزيارات (الصفوف المحتوية على بيانات)
-const visitBadge = document.createElement('div');
-visitBadge.className = 'text-sm text-green-700 bg-green-100 px-3 py-1 rounded-full mt-2 text-center';
-visitBadge.textContent = `عدد السجلات في الورقة: ${visitCount}`;
-
-const headerCard = document.querySelector('.header-gradient');
-if (headerCard && !document.getElementById('visitCount')) {
-    visitBadge.id = 'visitCount';
-    headerCard.appendChild(visitBadge);
+// --- عرض عدد الزيارات الميدانية أسفل مربع البحث ---
+let visitCountElement = document.getElementById('visitCount');
+if (!visitCountElement) {
+    const searchSection = document.querySelector('.flex.flex-col.md\\:flex-row.gap-4.mb-2');
+    if (searchSection) {
+        visitCountElement = document.createElement('div');
+        visitCountElement.id = 'visitCount';
+        visitCountElement.className = 'text-right mt-3 text-gray-700 font-semibold text-lg';
+        visitCountElement.innerHTML = `
+            <span class="text-blue-700">عدد الزيارات الميدانية:</span> 
+            <span class="text-gray-900">${visitCount}</span>
+        `;
+        searchSection.insertAdjacentElement('afterend', visitCountElement);
+    }
+} else {
+    visitCountElement.innerHTML = `
+        <span class="text-blue-700">عدد الزيارات الميدانية:</span> 
+        <span class="text-gray-900">${visitCount}</span>
+    `;
 }
 
                 console.log('Data loaded successfully for sheet:', sheetName, sheetData[sheetName]);
@@ -455,4 +465,5 @@ if (headerCard && !document.getElementById('visitCount')) {
 </body>
 
 </html>
+
 
